@@ -10,7 +10,12 @@ public class WeatherApp {
                 long begin = System.currentTimeMillis();
 
                 for (int n = 0; n < 5; n++) {
-                    WeatherForecastProvider weatherForecastProvider = new WeatherForecastProviderProxy();
+                    WeatherForecastProvider weatherForecastProvider = null;
+                    try {
+                        weatherForecastProvider = new WeatherComForecastClient();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     int number = new Random().nextInt(100);
                     if (number < 20) {
                         try {
